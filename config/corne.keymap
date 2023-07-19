@@ -18,27 +18,72 @@
         compatible = "zmk,behavior-tap-dance";
         label = "TAP_DANCE_MOD_TAP";
         #binding-cells = <0>;
-        tapping-term-ms = <200>;
+        tapping-term-ms = <180>;
         bindings = <&lt LOWER LALT>, <&mo 2>;
+      };
+
+      /**
+      * Converts the backspace into a delete if shift or alt is held
+      */
+      bspc_del: backspace_delete {
+        compatible = "zmk,behavior-mod-morph";
+        label = "BACKSPACE_DELETE";
+        #binding-cells = <0>;
+        bindings = <&kp BACKSPACE>, <&kp DELETE>;
+        mods = <(MOD_LSFT|MOD_LALT)>;
+      };
+
+      /**
+      * Converts the escape key into a grave when the GUI key is held
+      */
+      esc_grave: escape_grave {
+        compatible = "zmk,behavior-mod-morph";
+        label = "ESCAPE_GRAVE";
+        #binding-cells = <0>;
+        bindings = <&kp ESC>, <&kp GRAVE>;
+        mods = <(MOD_LGUI|MOD_RGUI);
+      };
+    };
+
+    combos {
+      /**
+      * Alternative backspace combo (21, 22)
+      */
+      combo_bksp {
+        timeout-ms = <20>;
+        key-positions = <21 22>;
+        bindings = <&bspc_del>;
+        layers = <0>;
+      };
+
+      /**
+      * Alternative tab combo (13 a, 14 s)
+      */
+      l_tab_key {
+        timeout-ms = <20>;
+        key-positions = <13 14>;
+        bindings = <&kp TAB>;
+      };
     };
  };
+
 
   keymap {
     compatible = "zmk,keymap";
 
     default_layer {
 // -----------------------------------------------------------------------------------------
-// |  TAB |  Q  |  W  |  E  |  R  |  T  |   |  Y  |  U   |  I  |  O  |  P  | BKSP |
-// | CTRL |  A  |  S  |  D  |  F  |  G  |   |  H  |  J   |  K  |  L  |  ;  |  '   |
-// | SHFT |  Z  |  X  |  C  |  V  |  B  |   |  N  |  M   |  ,  |  .  |  /  | ESC  |
-//                    | GUI | LWR | CMD |   | SPC | RSE  | ALT |
+// | ESC |  Q  |  W  |  E  |  R  |  T  |   |  Y  |  U   |  I  |  O  |  P  | BKSP |
+// |     |  A  |  S  |  D  |  F  |  G  |   |  H  |  J   |  K  |  L  |  '  |  ;   |
+// | ALT |  Z  |  X  |  C  |  V  |  B  |   |  N  |  M   |  ,  |  .  |  /  |      |
+//                   | ALT | SHF | CMD |   | SPC | SHF  | ALT |
 
                         label = "Base";
                         bindings = <
-   &kp TAB   &kp Q &kp W &kp E &kp R &kp T   &kp Y &kp U  &kp I     &kp O   &kp P    &kp BSPC
-   &kp LCTRL &kp A &kp S &kp D &kp F &kp G   &kp H &kp J  &kp K     &kp L   &kp SEMI &kp SQT
-   &kp LSHFT &kp Z &kp X &kp C &kp V &kp B   &kp N &kp M  &kp COMMA &kp DOT &kp FSLH &kp ESC
-                  &kp LGUI &td_mt &kp LCMD   &kp SPACE &mo 2 &kp RALT
+   &esc_grave &kp Q &kp W &kp E &kp R &kp T   &kp Y &kp U  &kp I     &kp O   &kp P    &bspc_del
+   &none      &kp A &kp S &kp D &kp F &kp G   &kp H &kp J  &kp K     &kp L   &kp SQT  &kp SEMI
+   &kp LALT   &kp Z &kp X &kp C &kp V &kp B   &kp N &kp M  &kp COMMA &kp DOT &kp FSLH &none
+                  &td_mt &kp LSHFT &kp LCMD   &kp SPACE &RSHFT &kp RALT
                         >;
                 };
 
@@ -47,29 +92,29 @@
 // |  TAB |  1  |  2  |  3  |  4  |  (  |   |  )  |  7  |  8  |  9  |     | DEL |
 // | BTCLR| BT1 | BT2 | BT3 | BT4 |  [  |   |  ]  |  4  |  5  |  6  |     |     |
 // | SHFT |     |     |     |     |     |   |     |  1  |  2  |  3  |     |     |
-//                    | GUI |     | SPC |   | ENT |     |  0  |
+//                    |     |     | SPC |   | ENT |     |  0  |
 
                         label = "Depths";
                         bindings = <
    &kp TAB    &kp N1       &kp N2       &kp N3       &kp N4       &kp N5         &kp RPAR &kp N7  &kp N8 &kp N9 &trans &kp DEL
    &bt BT_CLR &bt BT_SEL 0 &bt BT_SEL 1 &bt BT_SEL 2 &bt BT_SEL 3 &bt BT_SEL 4   &kp RBKT &kp N4  &kp N5 &kp N6 &trans &trans
    &kp LSHFT  &trans       &trans       &trans       &trans       &trans         &none    &kp N1  &kp N2 &kp N3 &trans &trans
-                          	        &kp LGUI     &trans       &kp SPACE      &kp RET  &trans  &kp N0
+                          	            &trans       &trans       &kp SPACE      &kp RET  &trans  &kp N0
                         >;
                 };
-                
+
                 raise_layer {
 // -----------------------------------------------------------------------------------------
-// |  TAB |  !  |  @  |  #  |  $  |  %  |   |  ^  |  &  |  *  |  (  |  )  | BKSP |
-// | CTRL |     |     |     |     |     |   |  -  |  =  |  [  |  ]  |  \  |  `   |
-// | SHFT |     |     |     |     |     |   |  _  |  +  |  {  |  }  | "|" |  ~   |
-//                    | GUI |     | SPC |   | ENT |     | ALT |
+// |  TAB |  !  |  @  |  #  |  $  |  %  |   |     |    |  UP |    |    |    |
+// | CTRL |     |     |     |     |     |   |     | <- |  DN | -> |    |    |
+// | SHFT |     |     |     |     |     |   |     |    |     |    |    |    |
+//                    | GUI |     | SPC |   | ENT |    | ALT |
                         label = "Raise";
                         bindings = <
-   &kp  TAB  &kp EXCL &kp AT &kp HASH &kp DLLR &kp PRCNT   &kp CARET &kp AMPS  &kp KP_MULTIPLY &kp LPAR &kp RPAR &kp BSPC
-   &kp LCTRL &trans   &trans &trans   &trans   &trans      &kp MINUS &kp EQUAL &kp LBKT        &kp RBKT &kp BSLH &kp GRAVE
-   &kp LSHFT &trans   &trans &trans   &trans   &trans      &kp UNDER &kp PLUS  &kp LBRC        &kp RBRC &kp PIPE &kp TILDE
-                    	     &kp LGUI &trans   &kp SPACE   &kp RET   &trans    &kp RALT
+   &kp TAB   &kp EXCL &kp AT &kp HASH &kp DLLR &kp PRCNT   &kp C_VOL_UP  &kp C_PREV  &kp UP    &kp C_NEXT &kp C_BRI_UP &kp C_BRI_DN
+   &kp LCTRL &trans   &trans &trans   &trans   &trans      &kp C_VOL_DN  &kp LEFT    &kp DOWN  &kp RIGHT  &none        &none
+   &kp LSHFT &trans   &trans &trans   &trans   &trans      &none         &none       &none     &none      &none       &none
+                    	     &kp LGUI &trans   &kp SPACE     &kp RET       &trans      &kp RALT
                         >;
                 };
         };
