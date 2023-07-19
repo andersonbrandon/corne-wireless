@@ -17,21 +17,21 @@
       compatible = "zmk,combos";
 
       /**
-      * Alternative backspace combo (21, 22)
+      * Alternative backspace combo (22, 23)
       */
       combo_bksp {
         timeout-ms = <20>;
-        key-positions = <21 22>;
+        key-positions = <22 23>;
         bindings = <&bspc_del>;
         layers = <0>;
       };
 
       /**
-      * Alternative tab combo (13 a, 14 s)
+      * Alternative tab combo (14 s, 15 d)
       */
       l_tab_key {
         timeout-ms = <20>;
-        key-positions = <13 14>;
+        key-positions = <14 15>;
         bindings = <&kp TAB>;
       };
     };
@@ -41,9 +41,17 @@
         compatible = "zmk,behavior-tap-dance";
         label = "TAP_DANCE_MOD_TAP";
         #binding-cells = <0>;
-        tapping-term-ms = <180>;
-        bindings = <&lt LOWER LALT>, <&mo 2>;
+        tapping-term-ms = <100>;
+        bindings = <&lt LOWER LALT>, <&mo UPPER>;
       };
+
+      test: test {
+        compatible = "zmk,behavior-tap-dance";
+        label = "TAP_DANCE_MOD_TAP";
+        #binding-cells = <0>;
+        tapping-term-ms = <100>;
+        bindings = <&mo LOWER>, <&mo UPPER>;
+      }
 
       /**
       * Converts the backspace into a delete if shift or alt is held
@@ -65,7 +73,7 @@
         #binding-cells = <0>;
         bindings = <&kp ESC>, <&kp GRAVE>;
         mods = <(MOD_LGUI|MOD_RGUI)>;
-        keep-mods = <(MOD_LGUI)>;
+        keep-mods = <(MOD_LGUI|MOD_LSFT)>;
       };
     };
 
@@ -84,23 +92,23 @@
    &esc_grave &kp Q &kp W &kp E &kp R &kp T   &kp Y &kp U  &kp I     &kp O   &kp P    &bspc_del
    &none      &kp A &kp S &kp D &kp F &kp G   &kp H &kp J  &kp K     &kp L   &kp SQT  &kp SEMI
    &kp LALT   &kp Z &kp X &kp C &kp V &kp B   &kp N &kp M  &kp COMMA &kp DOT &kp FSLH &none
-                  &kp LSHFT &td_mt &kp LCMD   &kp SPACE &kp RALT &kp RSHFT
+                  &kp LSHFT &test  &kp LCMD   &kp SPACE &kp RALT &kp RSHFT
                         >;
                 };
 
                 lower_layer {
 // -----------------------------------------------------------------------------------------
-// |  TAB |  1  |  2  |  3  |  4  |  (  |   |  )  |  7  |  8  |  9  |     | DEL |
-// | BTCLR| BT1 | BT2 | BT3 | BT4 |  [  |   |  ]  |  4  |  5  |  6  |     |     |
-// | SHFT |     |     |     |     |     |   |     |  1  |  2  |  3  |     |     |
-//                    |     |     | SPC |   | ENT |     |  0  |
+// |     |     |     |     |     |  (  |   |  )  |  7  |  8  |  9  |     | DEL |
+// |     |     |     |     |     |  [  |   |  ]  |  4  |  5  |  6  |     |     |
+// |     |     |     |     |     |  -  |   |  +  |  1  |  2  |  3  |     |     |
+//                   |     |     | SPC |   | ENT |     |  0  |
 
                         label = "Depths";
                         bindings = <
-   &kp TAB    &kp N1       &kp N2       &kp N3       &kp N4       &kp N5         &kp RPAR &kp N7  &kp N8 &kp N9 &trans &kp DEL
-   &bt BT_CLR &bt BT_SEL 0 &bt BT_SEL 1 &bt BT_SEL 2 &bt BT_SEL 3 &bt BT_SEL 4   &kp RBKT &kp N4  &kp N5 &kp N6 &trans &trans
-   &kp LSHFT  &trans       &trans       &trans       &trans       &trans         &none    &kp N1  &kp N2 &kp N3 &trans &trans
-                          	            &trans       &trans       &kp SPACE      &kp RET  &trans  &kp N0
+   &trans &trans &trans &trans &trans &kp LPAR        &kp RPAR &kp N7  &kp N8 &kp N9 &trans &bspc_del
+   &trans &trans &trans &trans &trans &kp LBKT        &kp RBKT &kp N4  &kp N5 &kp N6 &trans &trans
+   &trans &trans &trans &trans &trans &kp MINUS       &kp PLUS &kp N1  &kp N2 &kp N3 &trans &trans
+            	          &trans &trans &trans          &kp RET  &trans  &kp N0
                         >;
                 };
 
@@ -109,13 +117,13 @@
 // |  TAB |  !  |  @  |  #  |  $  |  %  |   |     |    |  UP |    |    |    |
 // | CTRL |     |     |     |     |     |   |     | <- |  DN | -> |    |    |
 // | SHFT |     |     |     |     |     |   |     |    |     |    |    |    |
-//                    | GUI |     | SPC |   | ENT |    | ALT |
+//                    | GUI |     |     |   | SPC |    | ALT |
                         label = "Raise";
                         bindings = <
    &kp TAB   &kp EXCL &kp AT &kp HASH &kp DLLR &kp PRCNT   &kp C_VOL_UP  &kp C_PREV  &kp UP    &kp C_NEXT &trans       &trans
    &kp LCTRL &trans   &trans &trans   &trans   &trans      &kp C_VOL_DN  &kp LEFT    &kp DOWN  &kp RIGHT  &trans       &trans
    &kp LSHFT &trans   &trans &trans   &trans   &trans      &none         &none       &none     &none      &kp C_BRI_UP &kp C_BRI_DN
-                    	     &kp LGUI &trans   &kp SPACE     &kp RET       &trans      &kp RALT
+                    	     &kp LGUI &trans   &kp SPACE     &kp SPACE     &trans      &kp RALT
                         >;
                 };
         };
