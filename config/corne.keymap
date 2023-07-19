@@ -108,7 +108,7 @@
         #binding-cells = <0>;
         bindings = <&kp LG(LS(RBKT))>;
       };
-    }
+    };
 
   keymap {
     compatible = "zmk,keymap";
