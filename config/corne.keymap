@@ -77,6 +77,39 @@
       };
     };
 
+    macros {
+
+      /**
+      * Starts a copy-to-clipboard screenshot on macos
+      */
+      ss: screenshot {
+        label = "mac_screenshot";
+        compatible = "zmk,behavior-macro";
+        #binding-cells = <0>;
+        bindings = <&kp LG(LS(LC(N4)))>;
+      }
+
+      /**
+      * Window tab left Cmd + Shift + [
+      */
+      wtl: window_tab_left {
+        label = "window_tab_left";
+        compatible = "zmk,behavior-macro";
+        #binding-cells = <0>;
+        bindings = <&kp LG(LS(LBKT))>;
+      }
+
+      /**
+      * Window tab right Cmd + Shift + ]
+      */
+      wtr: window_tab_right {
+        label = "window_tab_right";
+        compatible = "zmk,behavior-macro";
+        #binding-cells = <0>;
+        bindings = <&kp LG(LS(RBKT))>;
+      }
+    }
+
   keymap {
     compatible = "zmk,keymap";
 
@@ -107,8 +140,8 @@
                         bindings = <
    &trans &trans &trans &trans &kp LC(UP) &kp LPAR        &kp RPAR  &kp N7  &kp N8 &kp N9 &trans &bspc_del
    &trans &trans &trans &trans &trans     &kp LBKT        &kp RBKT  &kp N4  &kp N5 &kp N6 &trans &trans
-   &trans &trans &trans &trans &trans     &kp MINUS       &kp EQUAL &kp N1  &kp N2 &kp N3 &trans &trans
-            	          &trans &trans &trans          &kp RET   &kp N0  &trans
+   &trans &trans &trans &trans &ss        &kp MINUS       &kp EQUAL &kp N1  &kp N2 &kp N3 &trans &trans
+            	          &trans &trans &trans              &kp RET   &kp N0  &trans
                         >;
                 };
 
@@ -118,12 +151,12 @@
 // | CTRL |     |     |     |     |     |   |     | <- |  DN | -> |    |    |
 // | SHFT |     |     |     |     |     |   |     |    |     |    |    |    |
 //                    |     |     | GUI |   | SPC |    | ALT |
-                        label = "Raise";
+                        label = "Sky";
                         bindings = <
-   &kp TAB   &kp EXCL &kp AT &kp HASH &kp DLLR &kp PRCNT            &kp C_VOL_UP      &kp C_PREV  &kp UP    &kp C_NEXT &trans       &trans
-   &kp LCTRL &trans   &trans &trans   &trans   &trans               &kp C_VOL_DN      &kp LEFT    &kp DOWN  &kp RIGHT  &trans       &trans
-   &kp LSHFT &trans   &trans &trans   &trans   &kp LC(LS(LBKT))     &kp LC(LS(RBKT))  &none       &none     &none      &kp C_BRI_UP &kp C_BRI_DN
-                    	     &trans &trans   &kp LGUI                 &kp SPACE &trans  &kp RALT
+   &kp TAB   &kp EXCL &kp AT &kp HASH &kp DLLR &kp PRCNT   &kp C_VOL_UP  &kp C_PREV  &kp UP    &kp C_NEXT &trans       &trans
+   &kp LCTRL &trans   &trans &trans   &trans   &trans      &kp C_VOL_DN  &kp LEFT    &kp DOWN  &kp RIGHT  &trans       &trans
+   &kp LSHFT &trans   &trans &trans   &trans   &wtl        &wtr          &none       &none     &none      &kp C_BRI_UP &kp C_BRI_DN
+                    	     &trans &trans   &kp LGUI        &kp SPACE &trans  &kp RALT
                         >;
                 };
         };
