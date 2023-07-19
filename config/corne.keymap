@@ -17,11 +17,11 @@
       compatible = "zmk,combos";
 
       /**
-      * Alternative backspace combo (22, 23)
+      * Alternative backspace combo (20, 21)
       */
       combo_bksp {
         timeout-ms = <20>;
-        key-positions = <22 23>;
+        key-positions = <20 21>;
         bindings = <&bspc_del>;
         layers = <0>;
       };
@@ -43,14 +43,6 @@
         #binding-cells = <0>;
         tapping-term-ms = <100>;
         bindings = <&lt LOWER LALT>, <&mo UPPER>;
-      };
-
-      test: test {
-        compatible = "zmk,behavior-tap-dance";
-        label = "TAP_DANCE_MOD_TAP";
-        #binding-cells = <0>;
-        tapping-term-ms = <100>;
-        bindings = <&mo LOWER>, <&mo UPPER>;
       };
 
       /**
@@ -92,7 +84,7 @@
    &esc_grave &kp Q &kp W &kp E &kp R &kp T   &kp Y &kp U  &kp I     &kp O   &kp P    &bspc_del
    &none      &kp A &kp S &kp D &kp F &kp G   &kp H &kp J  &kp K     &kp L   &kp SQT  &kp SEMI
    &kp LALT   &kp Z &kp X &kp C &kp V &kp B   &kp N &kp M  &kp COMMA &kp DOT &kp FSLH &none
-                  &kp LSHFT &test  &kp LCMD   &kp SPACE &kp RALT &kp RSHFT
+                  &kp LSHFT &td_mt &kp LCMD   &kp SPACE &kp RALT &kp RSHFT
                         >;
                 };
 
