@@ -41,7 +41,7 @@
         label = "ESCAPE_GRAVE";
         #binding-cells = <0>;
         bindings = <&kp ESC>, <&kp GRAVE>;
-        mods = <(MOD_LGUI|MOD_RGUI);
+        mods = <(MOD_LGUI|MOD_RGUI)>;
       };
     };
 
