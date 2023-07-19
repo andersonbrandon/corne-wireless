@@ -41,8 +41,16 @@
         compatible = "zmk,behavior-tap-dance";
         label = "TAP_DANCE_MOD_TAP";
         #binding-cells = <0>;
-        tapping-term-ms = <100>;
+        tapping-term-ms = <180>;
         bindings = <&lt LOWER LALT>, <&mo UPPER>;
+      };
+
+      test: tap_dance_mod_test {
+        compatible = "zmk,behavior-tap-dance";
+        label = "TAP_DANCE_MOD_TAP";
+        #binding-cells = <0>;
+        tapping-term-ms = <180>;
+        bindings = <&mo LOWER>, <&mo UPPER>;
       };
 
       /**
