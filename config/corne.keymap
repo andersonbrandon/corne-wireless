@@ -51,7 +51,7 @@
         #binding-cells = <0>;
         tapping-term-ms = <100>;
         bindings = <&mo LOWER>, <&mo UPPER>;
-      }
+      };
 
       /**
       * Converts the backspace into a delete if shift or alt is held
