@@ -134,7 +134,7 @@
                         bindings = <
    &esc_grave &kp Q &kp W &kp E &kp R &kp T   &kp Y &kp U  &kp I     &kp O   &kp P    &bspc_del
    &kp TAB    &kp A &kp S &kp D &kp F &kp G   &kp H &kp J  &kp K     &kp L   &kp SQT  &kp SEMI
-   &kp LCTL   &kp Z &kp X &kp C &kp V &kp B   &kp N &kp M  &kp COMMA &kp DOT &kp FSLH &kp NUBS
+   &kp LCTL   &kp Z &kp X &kp C &kp V &kp B   &kp N &kp M  &kp COMMA &kp DOT &kp FSLH &kp BSLH
                   &kp LSHFT &layer &kp LCMD   &kp SPACE &kp RALT &kp RSHFT
                         >;
                 };
@@ -142,7 +142,7 @@
                 lower_layer {
 // -----------------------------------------------------------------------------------------
 // |     |     |     |     | Exp |  (  |   |  )  |  7  |  8  |  9  |     | DEL |
-// |     |     |     |     |     |  [  |   |  ]  |  4  |  5  |  6  |     |     |
+// |     |     |     |     | tm  |  [  |   |  ]  |  4  |  5  |  6  |     |     |
 // |     |     |     |     | SS  |  -  |   |  =  |  1  |  2  |  3  |     |     |
 //                   |     |     | SPC |   | ENT |     |  0  |
 
@@ -157,16 +157,16 @@
 
                 raise_layer {
 // -----------------------------------------------------------------------------------------
-// |  TAB |  !  |  @  |  #  |  $  |  %  |   |     |    |  UP |    |    |    |
-// | CTRL |     |     |     |     |     |   |     | <- |  DN | -> |    |    |
-// | SHFT |     |     |     |     |     |   |     |    |     |    |    |    |
-//                    |     |     | GUI |   | SPC |    | ALT |
+// |  TAB |  !  |  @  |  #  |  $  |  %  |   |     |     |  UP |    |    |    |
+// | CTRL |     |     |     |     |     |   |     | <-  |  DN | -> |    |    |
+// | SHFT |     |     |     |     |     |   |     |     |  tm |    |    |    |
+//                    |     |     | GUI |   | GUI | SPC | ALT |
                         label = "Sky";
                         bindings = <
    &kp TAB   &kp EXCL &kp AT &kp HASH &kp DLLR &kp PRCNT   &kp C_VOL_UP  &kp C_PREV  &kp UP    &kp C_NEXT &trans       &trans
    &kp LCTRL &trans   &trans &trans   &trans   &trans      &kp C_VOL_DN  &kp LEFT    &kp DOWN  &kp RIGHT  &trans       &trans
-   &kp LSHFT &trans   &trans &trans   &trans   &wtl        &wtr          &none       &none     &none      &kp C_BRI_UP &kp C_BRI_DN
-                    	     &trans &trans   &kp LGUI        &kp SPACE &trans  &kp RALT
+   &kp LSHFT &trans   &trans &trans   &trans   &wtl        &wtr          &none       &tmux     &none      &kp C_BRI_UP &kp C_BRI_DN
+                    	     &trans &trans   &kp LGUI        &kp RGUI &kp SPACE &kp RALT
                         >;
                 };
         };
