@@ -45,9 +45,9 @@
         bindings = <&lt LOWER LALT>, <&mo UPPER>;
       };
 
-      test: tap_dance_mod_test {
+      layer: tap_dance_mod_layer {
         compatible = "zmk,behavior-tap-dance";
-        label = "TAP_DANCE_MOD_TAP";
+        label = "TAP_DANCE_MOD_LAYER";
         #binding-cells = <0>;
         tapping-term-ms = <300>;
         bindings = <&mo LOWER>, <&mo UPPER>;
@@ -85,29 +85,29 @@
 // | ESC |  Q  |  W  |  E  |  R  |  T  |   |  Y  |  U   |  I  |  O  |  P  | BKSP |
 // |     |  A  |  S  |  D  |  F  |  G  |   |  H  |  J   |  K  |  L  |  '  |  ;   |
 // | ALT |  Z  |  X  |  C  |  V  |  B  |   |  N  |  M   |  ,  |  .  |  /  |      |
-//                   | ALT | SHF | CMD |   | SPC | SHF  | ALT |
+//                   | SHF | LAY | CMD |   | SPC | ALT  | SHF |
 
                         label = "Base";
                         bindings = <
    &esc_grave &kp Q &kp W &kp E &kp R &kp T   &kp Y &kp U  &kp I     &kp O   &kp P    &bspc_del
    &none      &kp A &kp S &kp D &kp F &kp G   &kp H &kp J  &kp K     &kp L   &kp SQT  &kp SEMI
-   &none      &kp Z &kp X &kp C &kp V &kp B   &kp N &kp M  &kp COMMA &kp DOT &kp FSLH &none
-                  &kp LSHFT &test &kp LCMD   &kp SPACE &kp RALT &kp RSHFT
+   &kp LALT   &kp Z &kp X &kp C &kp V &kp B   &kp N &kp M  &kp COMMA &kp DOT &kp FSLH &none
+                  &kp LSHFT &layer &kp LCMD   &kp SPACE &kp RALT &kp RSHFT
                         >;
                 };
 
                 lower_layer {
 // -----------------------------------------------------------------------------------------
-// |     |     |     |     |     |  (  |   |  )  |  7  |  8  |  9  |     | DEL |
+// |     |     |     |     | Exp |  (  |   |  )  |  7  |  8  |  9  |     | DEL |
 // |     |     |     |     |     |  [  |   |  ]  |  4  |  5  |  6  |     |     |
 // |     |     |     |     |     |  -  |   |  =  |  1  |  2  |  3  |     |     |
 //                   |     |     | SPC |   | ENT |     |  0  |
 
                         label = "Depths";
                         bindings = <
-   &trans &trans &trans &trans &trans &kp LPAR        &kp RPAR  &kp N7  &kp N8 &kp N9 &trans &bspc_del
-   &trans &trans &trans &trans &trans &kp LBKT        &kp RBKT  &kp N4  &kp N5 &kp N6 &trans &trans
-   &trans &trans &trans &trans &trans &kp MINUS       &kp EQUAL &kp N1  &kp N2 &kp N3 &trans &trans
+   &trans &trans &trans &trans &kp LC(UP) &kp LPAR        &kp RPAR  &kp N7  &kp N8 &kp N9 &trans &bspc_del
+   &trans &trans &trans &trans &trans     &kp LBKT        &kp RBKT  &kp N4  &kp N5 &kp N6 &trans &trans
+   &trans &trans &trans &trans &trans     &kp MINUS       &kp EQUAL &kp N1  &kp N2 &kp N3 &trans &trans
             	          &trans &trans &trans          &kp RET   &kp N0  &trans
                         >;
                 };
@@ -120,10 +120,10 @@
 //                    |     |     | GUI |   | SPC |    | ALT |
                         label = "Raise";
                         bindings = <
-   &kp TAB   &kp EXCL &kp AT &kp HASH &kp DLLR &kp PRCNT   &kp C_VOL_UP  &kp C_PREV  &kp UP    &kp C_NEXT &trans       &trans
-   &kp LCTRL &trans   &trans &trans   &trans   &trans      &kp C_VOL_DN  &kp LEFT    &kp DOWN  &kp RIGHT  &trans       &trans
-   &kp LSHFT &trans   &trans &trans   &trans   &trans      &none         &none       &none     &none      &kp C_BRI_UP &kp C_BRI_DN
-                    	     &trans &trans   &kp LGUI        &kp SPACE     &trans      &kp RALT
+   &kp TAB   &kp EXCL &kp AT &kp HASH &kp DLLR &kp PRCNT            &kp C_VOL_UP      &kp C_PREV  &kp UP    &kp C_NEXT &trans       &trans
+   &kp LCTRL &trans   &trans &trans   &trans   &trans               &kp C_VOL_DN      &kp LEFT    &kp DOWN  &kp RIGHT  &trans       &trans
+   &kp LSHFT &trans   &trans &trans   &trans   &kp LC(LS(LBKT))     &kp LC(LS(RBKT))  &none       &none     &none      &kp C_BRI_UP &kp C_BRI_DN
+                    	     &trans &trans   &kp LGUI                 &kp SPACE &trans  &kp RALT
                         >;
                 };
         };
