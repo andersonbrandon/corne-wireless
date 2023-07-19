@@ -20,7 +20,7 @@
       * Alternative backspace combo (20, 21)
       */
       combo_bksp {
-        timeout-ms = <20>;
+        timeout-ms = <50>;
         key-positions = <20 21>;
         bindings = <&bspc_del>;
         layers = <0>;
@@ -30,7 +30,7 @@
       * Alternative tab combo (14 s, 15 d)
       */
       l_tab_key {
-        timeout-ms = <20>;
+        timeout-ms = <50>;
         key-positions = <14 15>;
         bindings = <&kp TAB>;
       };
@@ -108,6 +108,16 @@
         #binding-cells = <0>;
         bindings = <&kp LG(LS(RBKT))>;
       };
+
+      /**
+      * tmux shortcut
+      */
+      tmux: tmux {
+        label = "window_tab_right";
+        compatible = "zmk,behavior-macro";
+        #binding-cells = <0>;
+        bindings = <&kp LC(B)>;
+      };
     };
 
   keymap {
@@ -116,15 +126,15 @@
     default_layer {
 // -----------------------------------------------------------------------------------------
 // | ESC |  Q  |  W  |  E  |  R  |  T  |   |  Y  |  U   |  I  |  O  |  P  | BKSP |
-// |     |  A  |  S  |  D  |  F  |  G  |   |  H  |  J   |  K  |  L  |  '  |  ;   |
-// | CTL |  Z  |  X  |  C  |  V  |  B  |   |  N  |  M   |  ,  |  .  |  /  |      |
+// | TAB |  A  |  S  |  D  |  F  |  G  |   |  H  |  J   |  K  |  L  |  '  |  ;   |
+// | CTL |  Z  |  X  |  C  |  V  |  B  |   |  N  |  M   |  ,  |  .  |  /  |  \   |
 //                   | SHF | LAY | CMD |   | SPC | ALT  | SHF |
 
                         label = "Base";
                         bindings = <
    &esc_grave &kp Q &kp W &kp E &kp R &kp T   &kp Y &kp U  &kp I     &kp O   &kp P    &bspc_del
-   &none      &kp A &kp S &kp D &kp F &kp G   &kp H &kp J  &kp K     &kp L   &kp SQT  &kp SEMI
-   &kp LCTL   &kp Z &kp X &kp C &kp V &kp B   &kp N &kp M  &kp COMMA &kp DOT &kp FSLH &none
+   &kp TAB    &kp A &kp S &kp D &kp F &kp G   &kp H &kp J  &kp K     &kp L   &kp SQT  &kp SEMI
+   &kp LCTL   &kp Z &kp X &kp C &kp V &kp B   &kp N &kp M  &kp COMMA &kp DOT &kp FSLH &kp NUBS
                   &kp LSHFT &layer &kp LCMD   &kp SPACE &kp RALT &kp RSHFT
                         >;
                 };
@@ -133,13 +143,13 @@
 // -----------------------------------------------------------------------------------------
 // |     |     |     |     | Exp |  (  |   |  )  |  7  |  8  |  9  |     | DEL |
 // |     |     |     |     |     |  [  |   |  ]  |  4  |  5  |  6  |     |     |
-// |     |     |     |     |     |  -  |   |  =  |  1  |  2  |  3  |     |     |
+// |     |     |     |     | SS  |  -  |   |  =  |  1  |  2  |  3  |     |     |
 //                   |     |     | SPC |   | ENT |     |  0  |
 
                         label = "Depths";
                         bindings = <
    &trans &trans &trans &trans &kp LC(UP) &kp LPAR        &kp RPAR  &kp N7  &kp N8 &kp N9 &trans &bspc_del
-   &trans &trans &trans &trans &trans     &kp LBKT        &kp RBKT  &kp N4  &kp N5 &kp N6 &trans &trans
+   &trans &trans &trans &trans &tmux      &kp LBKT        &kp RBKT  &kp N4  &kp N5 &kp N6 &trans &trans
    &trans &trans &trans &trans &ss        &kp MINUS       &kp EQUAL &kp N1  &kp N2 &kp N3 &trans &trans
             	          &trans &trans &trans              &kp RET   &kp N0  &trans
                         >;
