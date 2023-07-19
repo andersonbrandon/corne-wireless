@@ -13,6 +13,29 @@
 #define UPPER   2
 
 / {
+    combos {
+      compatible = "zmk,combos";
+
+      /**
+      * Alternative backspace combo (21, 22)
+      */
+      combo_bksp {
+        timeout-ms = <20>;
+        key-positions = <21 22>;
+        bindings = <&bspc_del>;
+        layers = <0>;
+      };
+
+      /**
+      * Alternative tab combo (13 a, 14 s)
+      */
+      l_tab_key {
+        timeout-ms = <20>;
+        key-positions = <13 14>;
+        bindings = <&kp TAB>;
+      };
+    };
+
     behaviors {
       td_mt: tap_dance_mod_tap {
         compatible = "zmk,behavior-tap-dance";
@@ -43,29 +66,6 @@
         bindings = <&kp ESC>, <&kp GRAVE>;
         mods = <(MOD_LGUI|MOD_RGUI)>;
         keep-mods = <(MOD_LGUI)>;
-      };
-    };
-
-    combos {
-      compatible = "zmk,combos";
-
-      /**
-      * Alternative backspace combo (21, 22)
-      */
-      combo_bksp {
-        timeout-ms = <20>;
-        key-positions = <21 22>;
-        bindings = <&bspc_del>;
-        layers = <0>;
-      };
-
-      /**
-      * Alternative tab combo (13 a, 14 s)
-      */
-      l_tab_key {
-        timeout-ms = <20>;
-        key-positions = <13 14>;
-        bindings = <&kp TAB>;
       };
     };
 
