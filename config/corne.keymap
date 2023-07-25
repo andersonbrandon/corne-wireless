@@ -149,16 +149,16 @@
 
                 lower_layer {
 // -----------------------------------------------------------------------------------------
-// |     |  `  |  SS  |  UP  |  Exp  |  (  |   |  )  |  7  |  8  |  9  |     | DEL |
-// |     |     |  <-  |  DN  |  ->   |  [  |   |  ]  |  4  |  5  |  6  |     |     |
-// |     |     |      |      |  tmx  |  -  |   |  =  |  1  |  2  |  3  |     |     |
+// |     |  `  |  SS  |  UP  |  Exp  |  (  |   |  )  |  7  |  8  |  9  |     |  DEL  |
+// |     |     |  <-  |  DN  |  ->   |  [  |   |  ]  |  4  |  5  |  6  |     | PG UP |
+// |     |     |      |      |  tmx  |  -  |   |  =  |  1  |  2  |  3  |     | PG DN |
 //                    |      |       | SPC |   | ENT |     |  0  |
 
                         label = "Depths";
                         bindings = <
    &trans &kp GRAVE &ss       &kp UP   &kp LC(UP) &kp LPAR      &kp RPAR  &kp N7  &kp N8 &kp N9 &trans &bspc_del
-   &trans &trans    &kp LEFT  &kp DOWN &kp RIGHT  &kp LBKT      &kp RBKT  &kp N4  &kp N5 &kp N6 &trans &trans
-   &trans &trans    &trans    &trans   &tmux      &kp MINUS     &kp EQUAL &kp N1  &kp N2 &kp N3 &trans &trans
+   &trans &trans    &kp LEFT  &kp DOWN &kp RIGHT  &kp LBKT      &kp RBKT  &kp N4  &kp N5 &kp N6 &trans &kp PG_UP
+   &trans &trans    &trans    &trans   &tmux      &kp MINUS     &kp EQUAL &kp N1  &kp N2 &kp N3 &trans &kp PG_DN
             	                      &trans &trans &trans        &kp RET   &trans  &kp N0
                         >;
                 };
@@ -171,10 +171,10 @@
 //                    |     |     | GUI |   | GUI | SPC | ALT |
                         label = "Sky";
                         bindings = <
-   &kp TAB   &kp EXCL &kp AT &kp HASH &kp DLLR &kp PRCNT   &kp C_VOL_UP  &trans      &kp UP    &kp C_PREV &kp C_PLAY   &kp C_NEXT 
-   &kp LCTRL &trans   &trans &trans   &trans   &trans      &kp C_VOL_DN  &kp LEFT    &kp DOWN  &kp RIGHT  &trans       &trans
-   &kp LSHFT &trans   &trans &trans   &trans   &wtl        &wtr          &none       &tmux     &none      &kp C_BRI_UP &kp C_BRI_DN
-                    	         &trans &trans &trans        &kp RGUI &kp SPACE &kp RALT
+   &kp TAB   &kp EXCL    &kp AT &kp HASH &kp DLLR &kp PRCNT   &kp C_VOL_UP  &trans      &kp UP    &kp C_PREV &kp C_PLAY   &kp C_NEXT 
+   &kp LCTRL &kp BT_NXT  &trans &trans   &trans   &trans      &kp C_VOL_DN  &kp LEFT    &kp DOWN  &kp RIGHT  &trans       &trans
+   &kp LSHFT &kp BT_PRV  &trans &trans   &trans   &wtl        &wtr          &none       &tmux     &none      &kp C_BRI_UP &kp C_BRI_DN
+                    	            &trans &trans &trans        &kp RGUI &kp SPACE &kp RALT
                         >;
                 };
         };
