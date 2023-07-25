@@ -172,8 +172,8 @@
                         label = "Sky";
                         bindings = <
    &kp TAB   &kp EXCL    &kp AT &kp HASH &kp DLLR &kp PRCNT   &kp C_VOL_UP  &trans      &kp UP    &kp C_PREV &kp C_PLAY   &kp C_NEXT 
-   &kp LCTRL &kp BT_NXT  &trans &trans   &trans   &trans      &kp C_VOL_DN  &kp LEFT    &kp DOWN  &kp RIGHT  &trans       &trans
-   &kp LSHFT &kp BT_PRV  &trans &trans   &trans   &wtl        &wtr          &none       &tmux     &none      &kp C_BRI_UP &kp C_BRI_DN
+   &kp LCTRL &bt BT_NXT  &trans &trans   &trans   &trans      &kp C_VOL_DN  &kp LEFT    &kp DOWN  &kp RIGHT  &trans       &trans
+   &kp LSHFT &bt BT_PRV  &trans &trans   &trans   &wtl        &wtr          &none       &tmux     &none      &kp C_BRI_UP &kp C_BRI_DN
                     	            &trans &trans &trans        &kp RGUI &kp SPACE &kp RALT
                         >;
                 };
