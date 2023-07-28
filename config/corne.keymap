@@ -76,7 +76,6 @@
         label = "HOMEROW_MODS";
         #binding-cells = <0>;
         tapping-term-ms = <250>;
-        flavor = "tap-preferred";
         bindings = <&kp>, <&kp>;
       };
         
