@@ -59,25 +59,15 @@
       };
       */
 
-      /*
       hm: homerow_mods {
         compatible = "zmk,behavior-hold-tap";
         label = "HOMEROW_MODS";
         #binding-cells = <2>;
-        tapping-term-ms = <220>;
-        quick-tap-ms = <0>;
+        tapping-term-ms = <180>;
+        quick-tap-ms = <20>;
         flavor = "tap-preferred";
         bindings = <&kp>, <&kp>;
-      };
-      */
-
-      hm: homerow_mods {
-        compatible = "zmk,behavior-tap-dance";
-        label = "HOMEROW_MODS";
-        #binding-cells = <0>;
-        tapping-term-ms = <250>;
-        bindings = <&kp>, <&kp>;
-      };
+    };
         
       layer: tap_dance_mod_layer {
         compatible = "zmk,behavior-tap-dance";
